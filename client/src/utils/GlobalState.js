@@ -23,7 +23,10 @@
 // export { StoreProvider, useStoreContext };
 
 import { configureStore } from '@reduxjs/toolkit';
+import productReducer from './productSlice';
 
 export default configureStore({
-  reducer: {},
+  reducer: {
+    product: productReducer,
+  },
 });
