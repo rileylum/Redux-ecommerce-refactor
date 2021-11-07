@@ -11,10 +11,11 @@ import { idbPromise } from '../../utils/helpers';
 
 function CategoryMenu() {
   // const [state, dispatch] = useStoreContext();
-  const state = useSelector();
+  // const state = useSelector(state => state);
+  const categories = useSelector(state => state.product.categories);
   const dispatch = useDispatch();
-
-  const { categories } = state;
+  // console.log(state);
+  // const { categories } = state;
 
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 

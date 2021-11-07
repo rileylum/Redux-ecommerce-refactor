@@ -8,7 +8,7 @@ import { idbPromise } from "../../utils/helpers";
 
 function ProductItem(item) {
   // const [state, dispatch] = useStoreContext();
-  const state = useState();
+  const {cart} = useSelector(state => state.product);
   const dispatch = useDispatch();
 
   const {
@@ -18,8 +18,6 @@ function ProductItem(item) {
     price,
     quantity
   } = item;
-
-  const { cart } = state
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id)

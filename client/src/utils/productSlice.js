@@ -10,17 +10,19 @@ export const productSlice = createSlice({
         currentCategory: '',
     },
     reducers: {
-        UPDATE_PRODUCTS: (state) => {
-            state.products.push(action.products);
+        UPDATE_PRODUCTS: (state, action) => {
+            // console.log(action.products);
+            state.products = [...action.products];
+            console.log(state.products);
         },
-        ADD_TO_CART: (state) => {
+        ADD_TO_CART: (state, action) => {
             state.cartOpen = true;
             state.cart.push(action.product);
         },
-        ADD_MULTIPLE_TO_CART: (state) => {
+        ADD_MULTIPLE_TO_CART: (state, action) => {
             state.cart.push(...action.products);
         },
-        UPDATE_CART_QUANTITY: (state) => {
+        UPDATE_CART_QUANTITY: (state, action) => {
             state.cartOpen = true;
             state.cart = state.cart.map(product => {
                 if (action._id === product._id) {
@@ -29,25 +31,26 @@ export const productSlice = createSlice({
                 return product
             })
         },
-        REMOVE_FROM_CART: (state) => {
+        REMOVE_FROM_CART: (state, action) => {
             state.cart = state.cart.filter(product => {
                 return product._id !== action._id;
             });
             state.cartOpen = state.cart.length > 0;
         },
-        CLEAR_CART: (state) => {
+        CLEAR_CART: (state, action) => {
             state.cartOpen = false;
             state.cart = [];
         },
-        TOGGLE_CART: (state) => {
+        TOGGLE_CART: (state, action) => {
             state.cartOpen = !state.cartOpen;
         },
-        UPDATE_CATEGORIES: (state) => {
+        UPDATE_CATEGORIES: (state, action) => {
             state.categories = [...action.categories];
         },
-        UPDATE_CURRENT_CATEGORY: (state) => {
+        UPDATE_CURRENT_CATEGORY: (state, action) => {
             state.currentCategory = action.currentCategory;
         },
+        default: (state) => {return state},
     },
 })
 

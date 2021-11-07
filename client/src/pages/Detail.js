@@ -17,7 +17,8 @@ import spinner from '../assets/spinner.gif';
 
 function Detail() {
   // const [state, dispatch] = useStoreContext();
-  const state = useSelector();
+  // const state = useSelector(state => state.product);
+  const {products, cart} = useSelector(state => state.product);
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -25,8 +26,9 @@ function Detail() {
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  const { products, cart } = state;
-
+  // const { products, cart } = state;
+  console.log(products);
+  console.log(cart);
   useEffect(() => {
     // already in global store
     if (products.length) {
