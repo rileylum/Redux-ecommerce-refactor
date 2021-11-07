@@ -20,19 +20,13 @@ function ProductList() {
 
   useEffect(() => {
     if (data) {
-      dispatch({
-        type: UPDATE_PRODUCTS,
-        products: data.products,
-      });
+      dispatch(UPDATE_PRODUCTS(data.products));
       data.products.forEach((product) => {
         idbPromise('products', 'put', product);
       });
     } else if (!loading) {
       idbPromise('products', 'get').then((products) => {
-        dispatch({
-          type: UPDATE_PRODUCTS,
-          products: products,
-        });
+        dispatch(UPDATE_PRODUCTS(products));
       });
     }
   }, [data, loading, dispatch]);

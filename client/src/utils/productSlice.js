@@ -12,28 +12,28 @@ export const productSlice = createSlice({
     reducers: {
         UPDATE_PRODUCTS: (state, action) => {
             // console.log(action.products);
-            state.products = [...action.products];
+            state.products = [...action.payload];
             console.log(state.products);
         },
         ADD_TO_CART: (state, action) => {
             state.cartOpen = true;
-            state.cart.push(action.product);
+            state.cart.push(action.payload);
         },
         ADD_MULTIPLE_TO_CART: (state, action) => {
-            state.cart.push(...action.products);
+            state.cart.push(...action.payload);
         },
         UPDATE_CART_QUANTITY: (state, action) => {
             state.cartOpen = true;
             state.cart = state.cart.map(product => {
-                if (action._id === product._id) {
-                    product.purchaseQuantity = action.purchaseQuantity
+                if (action.payload._id === product._id) {
+                    product.purchaseQuantity = action.payload.purchaseQuantity
                 }
                 return product
             })
         },
         REMOVE_FROM_CART: (state, action) => {
             state.cart = state.cart.filter(product => {
-                return product._id !== action._id;
+                return product._id !== action.payload;
             });
             state.cartOpen = state.cart.length > 0;
         },
@@ -45,10 +45,10 @@ export const productSlice = createSlice({
             state.cartOpen = !state.cartOpen;
         },
         UPDATE_CATEGORIES: (state, action) => {
-            state.categories = [...action.categories];
+            state.categories = [...action.payload];
         },
         UPDATE_CURRENT_CATEGORY: (state, action) => {
-            state.currentCategory = action.currentCategory;
+            state.currentCategory = action.payload;
         },
         default: (state) => {return state},
     },
