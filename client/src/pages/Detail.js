@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import Cart from '../components/Cart';
-// import { useStoreContext } from '../utils/GlobalState';
+
 import { useSelector, useDispatch } from 'react-redux';
 import {
   REMOVE_FROM_CART,
@@ -16,8 +16,7 @@ import { idbPromise } from '../utils/helpers';
 import spinner from '../assets/spinner.gif';
 
 function Detail() {
-  // const [state, dispatch] = useStoreContext();
-  // const state = useSelector(state => state.product);
+
   const {products, cart} = useSelector(state => state.product);
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -26,9 +25,6 @@ function Detail() {
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  // const { products, cart } = state;
-  console.log(products);
-  console.log(cart);
   useEffect(() => {
     // already in global store
     if (products.length) {
