@@ -11,9 +11,7 @@ export const productSlice = createSlice({
     },
     reducers: {
         UPDATE_PRODUCTS: (state, action) => {
-            // console.log(action.products);
             state.products = [...action.payload];
-            console.log(state.products);
         },
         ADD_TO_CART: (state, action) => {
             state.cartOpen = true;
